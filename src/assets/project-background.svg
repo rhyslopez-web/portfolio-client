@@ -1,0 +1,35 @@
+<svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_1_29)">
+<rect x="0.25" y="0.25" width="99.5" height="99.5" stroke="#411BFC" stroke-width="0.5"/>
+<rect x="0.25" y="100.25" width="99.5" height="99.5" stroke="#411BFC" stroke-width="0.5"/>
+<rect x="0.25" y="200.25" width="99.5" height="99.5" stroke="#411BFC" stroke-width="0.5"/>
+<rect x="0.25" y="300.25" width="99.5" height="99.5" stroke="#411BFC" stroke-width="0.5"/>
+<rect x="0.25" y="400.25" width="99.5" height="99.5" stroke="#411BFC" stroke-width="0.5"/>
+<rect x="100.25" y="0.25" width="99.5" height="99.5" stroke="#411BFC" stroke-width="0.5"/>
+<rect x="100.25" y="100.25" width="99.5" height="99.5" stroke="#411BFC" stroke-width="0.5"/>
+<rect x="100.25" y="200.25" width="99.5" height="99.5" stroke="#411BFC" stroke-width="0.5"/>
+<rect x="100.25" y="300.25" width="99.5" height="99.5" stroke="#411BFC" stroke-width="0.5"/>
+<rect x="100.25" y="400.25" width="99.5" height="99.5" stroke="#411BFC" stroke-width="0.5"/>
+<rect x="200.25" y="0.25" width="99.5" height="99.5" stroke="#411BFC" stroke-width="0.5"/>
+<rect x="200.25" y="100.25" width="99.5" height="99.5" stroke="#411BFC" stroke-width="0.5"/>
+<rect x="200.25" y="200.25" width="99.5" height="99.5" stroke="#411BFC" stroke-width="0.5"/>
+<rect x="200.25" y="300.25" width="99.5" height="99.5" stroke="#411BFC" stroke-width="0.5"/>
+<rect x="200.25" y="400.25" width="99.5" height="99.5" stroke="#411BFC" stroke-width="0.5"/>
+<rect x="300.25" y="0.25" width="99.5" height="99.5" stroke="#411BFC" stroke-width="0.5"/>
+<rect x="300.25" y="100.25" width="99.5" height="99.5" stroke="#411BFC" stroke-width="0.5"/>
+<rect x="300.25" y="200.25" width="99.5" height="99.5" stroke="#411BFC" stroke-width="0.5"/>
+<rect x="300.25" y="300.25" width="99.5" height="99.5" stroke="#411BFC" stroke-width="0.5"/>
+<rect x="300.25" y="400.25" width="99.5" height="99.5" stroke="#411BFC" stroke-width="0.5"/>
+<rect x="400.25" y="0.25" width="99.5" height="99.5" stroke="#411BFC" stroke-width="0.5"/>
+<rect x="400.25" y="100.25" width="99.5" height="99.5" stroke="#411BFC" stroke-width="0.5"/>
+<rect x="400.25" y="200.25" width="99.5" height="99.5" stroke="#411BFC" stroke-width="0.5"/>
+<rect x="400.25" y="300.25" width="99.5" height="99.5" stroke="#411BFC" stroke-width="0.5"/>
+<rect x="400.25" y="400.25" width="99.5" height="99.5" stroke="#411BFC" stroke-width="0.5"/>
+</g>
+<rect x="0.5" y="0.5" width="499" height="499" stroke="#411BFC"/>
+<defs>
+<clipPath id="clip0_1_29">
+<rect width="500" height="500" fill="white"/>
+</clipPath>
+</defs>
+</svg>
