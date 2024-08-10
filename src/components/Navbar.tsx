@@ -12,7 +12,7 @@ const Navbar = () => {
     }
     
   return (
-    <nav className='py-4 px-10 flex justify-between fixed top-5 left-0 right-0'>
+    <nav className='py-4 px-10 flex justify-between fixed top-5 left-0 right-0 bg-transparent z-50'>
         <a href="">
             {/* <img className="h-10" src={logo} alt="" /> */}
         </a>

@@ -7,7 +7,7 @@ type ButtonType = {
 const Button = ({label, link} : ButtonType) => {
   return (
     <a href={link}>
-        <button className="border border-primary-blue text-primary-blue rounded-full px-4 py-2">
+        <button className="border border-primary-blue text-primary-blue rounded-full px-4 py-2 backdrop-blur-sm">
             {label}
         </button>
     </a>

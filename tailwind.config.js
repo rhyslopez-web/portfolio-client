@@ -11,6 +11,9 @@ export default {
       },
       backgroundImage: {
         'project-grid' : "url('./src/assets/project-background.svg')"
+      },
+      fontFamily: {
+        'primaryRegular' : ['Regular']
       }
     },
   },
