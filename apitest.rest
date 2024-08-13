@@ -1,0 +1,2 @@
+###
+GET https://portfolio-strapi-cms-494nt.ondigitalocean.app/api/projects?populate=*

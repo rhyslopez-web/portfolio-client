@@ -40,6 +40,15 @@ const Projects = () => {
                 }
             }
         },
+        skills: {
+            data: [
+                {
+                    attributes:{
+                        Skill: string
+                    }
+                }
+            ]
+        }
 
     }
   }
@@ -57,7 +66,7 @@ const Projects = () => {
 
 
   return (
-    <div className="lg:px-40 mt-20 grid lg:grid-cols-2 md:grid-cols-2 gap-10 px-5 md:px-20">
+    <div className="lg:px-40 mt-20 mb-20 grid lg:grid-cols-2 md:grid-cols-2 gap-10 px-5 md:px-20">
         {projects.map((project, index) => (
             <div className={project.id % 2 === 0 ? 'lg:mt-20 md:mt-40 space-y-5' : 'space-y-5'} key={index}>
                 <span className="text-4xl font-primaryRegular text-primary-blue">0{project.id}</span>
@@ -85,6 +94,14 @@ const Projects = () => {
                     <h2 className="text-xl font-medium text-primary-blue">{project.attributes.Title}</h2>
                     <p className="text-primary-blue">{project.attributes.Description}</p>
                 </div>
+
+                <ul className="flex flex-wrap gap-3 w-full">
+                    {project.attributes.skills.data.map((skill,index) => (
+                        <li key={index} className="border border-primary-blue text-primary-blue text-center px-3 py-1 rounded-full lg:w-1/6 text-sm">
+                            {skill.attributes.Skill}
+                        </li>
+                    ))}
+                </ul>
             </div>
         ))}
     </div>
