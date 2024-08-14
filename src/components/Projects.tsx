@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
 const Projects = () => {
 
@@ -68,6 +69,7 @@ const Projects = () => {
   return (
     <div className="lg:px-40 mt-20 mb-20 grid lg:grid-cols-2 md:grid-cols-2 gap-10 px-5 md:px-20">
         {projects.map((project, index) => (
+            <Link to={`/project/${project.id}`}>
             <div className={project.id % 2 === 0 ? 'lg:mt-20 md:mt-40 space-y-5' : 'space-y-5'} key={index}>
                 <span className="text-4xl font-primaryRegular text-primary-blue">0{project.id}</span>
 
@@ -103,6 +105,7 @@ const Projects = () => {
                     ))}
                 </ul>
             </div>
+            </Link>
         ))}
     </div>
   )
