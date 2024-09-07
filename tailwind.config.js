@@ -10,7 +10,7 @@ export default {
         'primary-blue' : '#2500ff'
       },
       backgroundImage: {
-        'project-grid' : "url('./src/assets/project-background.svg')",
+        'project-grid' : "url('/src/assets/project-background.svg')",
         'project-grid-wide' : "url('../src/assets/project-background-wide.svg')"
       },
       fontFamily: {
