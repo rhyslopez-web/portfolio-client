@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import {motion} from 'framer-motion'
+import './Projects.css'
 
 const Projects = () => {
-
   type projectsType = {
     id: number,
     attributes: {
@@ -72,24 +73,41 @@ const Projects = () => {
             <Link to={`/project/${project.id}`}>
             <div className={project.id % 2 === 0 ? 'lg:mt-20 md:mt-40 space-y-5' : 'space-y-5'} key={index}>
                 <span className="text-4xl font-primaryRegular text-primary-blue">0{project.id}</span>
-
                 {/* Image grid container */}
                 <div 
-                className='aspect-square bg-project-grid bg-contain relative flex flex-col justify-center'>
-                    <img src={project.attributes.Thumbnail.data.attributes.formats.small.url} 
-                    className="absolute w-4/6 z-20 inset-x-0 mx-auto inset-y-0 my-auto" 
-                    alt="" 
-                    />    
+                className='aspect-square bg-project-grid bg-contain relative flex flex-col items-center justify-center'>
+                    <motion.div
+                    layout
+                    initial={{rotate: '5deg' }}
+                    whileHover={{ 
+                        gap: "50px",
+                        rotate: '-5deg',
+                        // scale: 1.1
+                    }}
+                    transition={{
+                        duration: 0.3,
+                        ease: 'easeInOut'
+                    }}
 
-                    <img src={project.attributes.Thumbnail2.data.attributes.formats.small.url} 
-                    className="absolute w-4/6 z-10 inset-x-0 mx-auto mb-40"
-                    alt="" 
-                    />    
+                    className="w-5/6 lg:w-4/6 image-container -space-y-20 flex flex-col gap-[-10px]"
 
-                    <img src={project.attributes.Thumbnail3.data.attributes.formats.small.url} 
-                    className="absolute w-4/6 z-0 inset-x-0 mx-auto mt-40" 
-                    alt="" 
-                    />    
+                    >
+                        <motion.img 
+                        src={project.attributes.Thumbnail.data.attributes.formats.small.url} 
+                        className="" 
+                        alt="" 
+                        />    
+
+                        <img src={project.attributes.Thumbnail2.data.attributes.formats.small.url} 
+                        className="hidden lg:flex"
+                        alt="" 
+                        />
+
+                        <img src={project.attributes.Thumbnail3.data.attributes.formats.small.url} 
+                        className="hidden lg:flex" 
+                        alt="" 
+                        /> 
+                    </motion.div>
                 </div>
 
                 <div className="flex flex-col gap-1">

@@ -1,9 +1,8 @@
 import { useState } from "react"
 import { PlusIcon, MinusIcon } from "lucide-react"
-import gsap from "gsap/all"
-import { useGSAP } from "@gsap/react"
 import { disablePageScroll, enablePageScroll } from 'scroll-lock';
 import { Link } from "react-router-dom";
+import {motion, AnimatePresence} from 'framer-motion'
 
 
 const Navbar = () => {
@@ -14,13 +13,6 @@ const Navbar = () => {
         setMobileMenu(!mobileMenu)
         mobileMenu ? enablePageScroll() : disablePageScroll()
     }
-
-    useGSAP(() => {
-        gsap.from('#mobileNav', {
-            opacity: 0,
-            ease: "power1.inOut"
-        })
-    }, [mobileMenu])
     
   return (
     <nav className="lg:px-10 lg:py-7 fixed lg:top-5 left-0 right-0 z-50">
@@ -49,15 +41,27 @@ const Navbar = () => {
             </button>
         </div>
 
-        {mobileMenu && (
-            <div id="mobileNav" className="lg:hidden h-screen bg-primary-blue flex justify-center items-center">
-                <ul className="flex flex-col gap-2">
-                    <li><a className="font-medium text-4xl text-neutral-200 tracking-wide" href="#" onClick={mobileToggle}>Projects</a></li>
-                    <li><a className="font-medium text-4xl text-neutral-200 tracking-wide" href="#" onClick={mobileToggle}>About</a></li>
-                    <li><a className="font-medium text-4xl text-neutral-200 tracking-wide" href="#" onClick={mobileToggle}>Stack</a></li>
-                </ul>
-            </div>
-        )}
+        <AnimatePresence>
+            {mobileMenu && (
+                <motion.div 
+                initial={{
+                    opacity: 0
+                }}
+                animate={{
+                    opacity: 1
+                }}
+                exit={{
+                    opacity: 0
+                }}
+                id="mobileNav" className="lg:hidden h-screen bg-primary-blue flex justify-center items-center">
+                    <ul className="flex flex-col gap-2">
+                        <li><a className="font-medium text-4xl text-neutral-200 tracking-wide" href="#" onClick={mobileToggle}>Projects</a></li>
+                        <li><a className="font-medium text-4xl text-neutral-200 tracking-wide" href="#" onClick={mobileToggle}>About</a></li>
+                        <li><a className="font-medium text-4xl text-neutral-200 tracking-wide" href="#" onClick={mobileToggle}>Stack</a></li>
+                    </ul>
+                </motion.div>
+            )}
+        </AnimatePresence>
 
     </nav>
   )
