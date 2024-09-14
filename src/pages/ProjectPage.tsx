@@ -87,22 +87,21 @@ const ProjectPage = () => {
   
   return (
     // Blue Background
-    <div className="h-screen bg-[#2500dd] p-5"> 
+    <div className="lg:h-screen bg-[#2500dd] p-0 lg:p-5"> 
 
       {/* Main viewport */}
-      <div className="bg-[#e5e5e5] h-full overflow-hidden rounded-3xl">
+      <div className="bg-[#e5e5e5] h-full lg:overflow-hidden lg:rounded-3xl">
 
         {/* Paralax image container */}
         <motion.main 
         transition={{
         ease: 'easeInOut'
         }}
-        className="bg-transparent  lg:rounded-tl-lg lg:rounded-tr-3xl lg:rounded-br-lg lg:rounded-bl-3xl h-screen grid grid-cols-1 lg:grid-cols-2 relative">
+        className="lg:rounded-tl-lg lg:rounded-tr-3xl lg:rounded-br-lg lg:rounded-bl-3xl lg:h-screen grid grid-cols-1 lg:grid-cols-2 relative">
           
-          {/* Viewport */}
-          <div className="text-primary-blue flex flex-col gap-10 lg:sticky top-0 h-screen p-14 bg-[#e5e5e5]">
+          <div className="text-primary-blue flex flex-col gap-10 lg:sticky top-0 lg:h-screen p-5 lg:p-14 bg-[#e5e5e5] py-20">
             {/* Project Title */}
-            <div className="flex justify-between items-center">
+            <div className="flex gap-5 flex-col lg:flex-row justify-between lg:items-center">
               <h1 className="text-3xl font-medium">{project.attributes.Title}</h1>
 
 
@@ -133,6 +132,13 @@ const ProjectPage = () => {
                   "Loading Data"
             }  
             </ul>
+
+            {/* Mobile Images */}
+            <div className="lg:hidden flex flex-col gap-5">
+              <img src={project.attributes.Thumbnail.data.attributes.formats.large.url} alt="" />
+              <img src={project.attributes.Thumbnail2.data.attributes.formats.large.url} alt="" />
+              <img src={project.attributes.Thumbnail3.data.attributes.formats.large.url} alt="" />
+            </div>
 
             {/* Project Description */}
             <motion.div 
@@ -172,7 +178,7 @@ const ProjectPage = () => {
             </motion.div>                   
           </div>
           
-          <div id="viewport" ref={containerRef} className="overflow-scroll pb-10 relative">
+          <div id="viewport" ref={containerRef} className="overflow-scroll pb-10 relative hidden lg:flex flex-col">
             <FirstProjectImage 
             src={project.attributes.Thumbnail2.data.attributes.formats.large.url} 
             scrollYProgress={scrollYProgress} />
@@ -184,7 +190,6 @@ const ProjectPage = () => {
             <ThirdProjectImage 
             src={project.attributes.Thumbnail3.data.attributes.formats.large.url} 
             scrollYProgress={scrollYProgress} />
-
           </div>
 
         </motion.main>
@@ -199,8 +204,6 @@ export default ProjectPage
 // Image components - each one has different animation properties based on the scroll progress
 const FirstProjectImage = ({src, className, scrollYProgress} : {src: string, className?: string, scrollYProgress: any}) => {
   const scale = useTransform(scrollYProgress, [0.1, 0.3], [0.8, 0.2])
-  const rotate = useTransform(scrollYProgress, [0, 0.3], [0, 5])
-
   return(
     <motion.img
     src={src} 
@@ -211,8 +214,6 @@ const FirstProjectImage = ({src, className, scrollYProgress} : {src: string, cla
 }
 const SecondProjectImage = ({src, className, scrollYProgress} : {src: string, className?: string, scrollYProgress: any}) => {
   const scale = useTransform(scrollYProgress, [0.3, 0.6], [0.8, 0.2])
-  const rotate = useTransform(scrollYProgress, [0.3, 0.6], [5, -5])
-
   return(
     <motion.img
     src={src} 
@@ -223,8 +224,6 @@ const SecondProjectImage = ({src, className, scrollYProgress} : {src: string, cl
 }
 const ThirdProjectImage = ({src, className, scrollYProgress} : {src: string, className?: string, scrollYProgress: any}) => {
   const scale = useTransform(scrollYProgress, [0.9, 1], [0.3, 0.8])
-  const rotate = useTransform(scrollYProgress, [0.6, 1], [5, -5])
-
   return(
     <motion.img
     src={src} 

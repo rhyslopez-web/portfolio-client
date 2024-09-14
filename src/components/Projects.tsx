@@ -7,6 +7,7 @@ const Projects = () => {
   type projectsType = {
     id: number,
     attributes: {
+        ProjectId: number,
         Title: string,
         Description: string,
         Thumbnail: {
@@ -72,7 +73,7 @@ const Projects = () => {
         {projects.map((project, index) => (
             <Link to={`/project/${project.id}`}>
             <div className={project.id % 2 === 0 ? 'lg:mt-20 md:mt-40 space-y-5' : 'space-y-5'} key={index}>
-                <span className="text-4xl font-primaryRegular text-primary-blue">0{project.id}</span>
+                <span className="text-4xl font-primaryRegular text-primary-blue">0{project.attributes.ProjectId}</span>
                 {/* Image grid container */}
                 <div 
                 className='aspect-square bg-project-grid bg-contain relative flex flex-col items-center justify-center'>
