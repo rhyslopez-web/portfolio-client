@@ -89,22 +89,22 @@ const Projects = () => {
                         ease: 'easeInOut'
                     }}
 
-                    className="w-5/6 lg:w-4/6 image-container -space-y-20 flex flex-col gap-[-10px]"
+                    className="w-5/6 lg:w-4/6 image-container -space-y-20 flex flex-col gap-[-10px] drop-shadow-2xl"
 
                     >
                         <motion.img 
                         src={project.attributes.Thumbnail.data.attributes.formats.small.url} 
-                        className="" 
+                        className="drop-shadow-2xl" 
                         alt="" 
                         />    
 
                         <img src={project.attributes.Thumbnail2.data.attributes.formats.small.url} 
-                        className="hidden lg:flex"
+                        className="hidden lg:flex drop-shadow-2xl"
                         alt="" 
                         />
 
                         <img src={project.attributes.Thumbnail3.data.attributes.formats.small.url} 
-                        className="hidden lg:flex" 
+                        className="hidden lg:flex drop-shadow-2xl" 
                         alt="" 
                         /> 
                     </motion.div>

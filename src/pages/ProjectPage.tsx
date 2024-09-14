@@ -1,37 +1,24 @@
-// import { useEffect, useState } from "react"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useParams } from "react-router"
-import CanvasGrid from "../components/GridCanvas"
-import Navbar from "../components/Navbar"
+import { twMerge } from 'tailwind-merge'
+import { useScroll, useTransform, motion } from "framer-motion"
+import './ProjectPage.css'
+import ProjectInterface from "../interface/ProjectPage.interface"
+import { Globe, Github } from "lucide-react"
 
 const ProjectPage = () => {
   const params = useParams()
-  console.log(params)
-
-  interface ProjectInterface {
-    id: number,
-    attributes: {
-      Title: string,
-      Description: string,
-      Thumbnail: {
-        data: {
-          attributes:{
-            formats:{
-              large:{
-                url: string
-              }
-            }
-          }
-        }
-      }
-    }
-  }
 
   const initialProject : ProjectInterface = {
     id: 0,
     attributes: {
       Title: "",
+      AboutProject: "",
+      ProjectGoals: "",
       Description: "",
+      FutureImprovements: "",
+      WebsiteLink: "",
+      GithubLink: "",
       Thumbnail: {
         data: {
           attributes: {
@@ -42,7 +29,38 @@ const ProjectPage = () => {
             }
           }
         }
-      }
+      },
+      Thumbnail2: {
+        data: {
+          attributes: {
+            formats: {
+              large: {
+                url: ""
+              }
+            }
+          }
+        }
+      },
+      Thumbnail3: {
+        data: {
+          attributes: {
+            formats: {
+              large: {
+                url: ""
+              }
+            }
+          }
+        }
+      },
+      skills: {
+        data: [
+            {
+                attributes:{
+                    Skill: ""
+                }
+            }
+        ]
+      },
     }
   }
 
@@ -57,39 +75,161 @@ const ProjectPage = () => {
     fetchProjects()
 
     console.log('This is the project: ' + project)
-  }, [])  
+  }, [params])
 
+  const containerRef = useRef<HTMLDivElement | null>(null)
+
+  const { scrollYProgress } = useScroll({
+    container: containerRef,
+    offset: ['start start', 'end end']
+  })
+
+  
   return (
-    <div className="h-screen lg:p-5 bg-[#2500dd] overflow-hidden">
-        <Navbar/>
-        <div id="viewport" 
-        className="h-full bg-[#e5e5e5] lg:rounded-tl-lg lg:rounded-tr-3xl lg:rounded-br-lg 
-        lg:rounded-bl-3xl overflow-scroll overflow-x-hidden relative lg:pl-40 lg:pr-5 md:px-20 px-5
-        flex flex-col gap-10"
-        >
-        
-        <div className="flex flex-col gap-2 text-primary-blue">
-          <h1 className="text-2xl font-medium mt-20">{project.attributes.Title}</h1>
-          <p>{project.attributes.Description}</p>
-        </div>
+    // Blue Background
+    <div className="h-screen bg-[#2500dd] p-5"> 
 
-        <div className="relative">
-          <div className="hidden lg:flex justify-center items-center">
-            <CanvasGrid/>
+      {/* Main viewport */}
+      <div className="bg-[#e5e5e5] h-full overflow-hidden rounded-3xl">
+
+        {/* Paralax image container */}
+        <motion.main 
+        transition={{
+        ease: 'easeInOut'
+        }}
+        className="bg-transparent  lg:rounded-tl-lg lg:rounded-tr-3xl lg:rounded-br-lg lg:rounded-bl-3xl h-screen grid grid-cols-1 lg:grid-cols-2 relative">
+          
+          {/* Viewport */}
+          <div className="text-primary-blue flex flex-col gap-10 lg:sticky top-0 h-screen p-14 bg-[#e5e5e5]">
+            {/* Project Title */}
+            <div className="flex justify-between items-center">
+              <h1 className="text-3xl font-medium">{project.attributes.Title}</h1>
+
+
+              {/* Live Site and Github button */}
+              <div className="flex gap-2">
+                <a href={project.attributes.GithubLink} target="_blank" className="h-10 w-10 bg-primary-blue rounded-full flex justify-center items-center">
+                  <Github color="#e5e5e5" />
+                </a>
+
+                <a href={project.attributes.WebsiteLink} target="_blank" className="h-10 w-10 bg-primary-blue rounded-full flex justify-center items-center">
+                  <Globe color="#e5e5e5" />
+                </a>
+              </div>
+            </div>
+
+            {/* Skill pills looped */}
+            <ul className="flex flex-wrap gap-3">
+              {
+              project.attributes.skills ?
+              project.attributes.skills.data.map((skill, index) => (
+                  <li 
+                  className="border border-primary-blue text-primary-blue text-center px-3 py-1 rounded-full lg:w-1/6 text-sm"
+                  key={index}>
+                    {skill.attributes.Skill}
+                  </li>
+                  ))
+                  :
+                  "Loading Data"
+            }  
+            </ul>
+
+            {/* Project Description */}
+            <motion.div 
+            initial={{
+              x: -500,
+              opacity: 0
+            }}
+            animate={{
+              x: 0,
+              opacity: 1
+            }}
+            transition={{
+              duration: 0.7
+            }}
+            className="text-primary-blue flex flex-col gap-2">
+              <h2 className="text-xl font-medium">About {project.attributes.Title}</h2>
+              <p>{project.attributes.AboutProject}</p>
+            </motion.div>  
+
+            {/*Goals for Project*/}
+            <motion.div 
+            initial={{
+              x: -500,
+              opacity: 0
+            }}
+            animate={{
+              x: 0,
+              opacity: 1
+            }}
+            transition={{
+              duration: 0.7,
+              delay: 0.3
+            }}
+            className="text-primary-blue flex flex-col gap-2">
+              <h2 className="text-xl font-medium">Goals for {project.attributes.Title}</h2>
+              <p>{project.attributes.ProjectGoals}</p>
+            </motion.div>                   
+          </div>
+          
+          <div id="viewport" ref={containerRef} className="overflow-scroll pb-10 relative">
+            <FirstProjectImage 
+            src={project.attributes.Thumbnail2.data.attributes.formats.large.url} 
+            scrollYProgress={scrollYProgress} />
+
+            <SecondProjectImage 
+            src={project.attributes.Thumbnail.data.attributes.formats.large.url} 
+            scrollYProgress={scrollYProgress} />
+
+            <ThirdProjectImage 
+            src={project.attributes.Thumbnail3.data.attributes.formats.large.url} 
+            scrollYProgress={scrollYProgress} />
+
           </div>
 
-          <img 
-          src={project.attributes.Thumbnail.data.attributes.formats.large.url} 
-          alt="" 
-          className="lg:absolute lg:w-4/6 inset-x-0 mx-auto inset-y-0 my-auto
-          drop-shadow-2xl"
-          />
-        </div>
-
-
-        </div>
+        </motion.main>
+      </div>
     </div>
   )
 }
 
 export default ProjectPage
+
+
+// Image components - each one has different animation properties based on the scroll progress
+const FirstProjectImage = ({src, className, scrollYProgress} : {src: string, className?: string, scrollYProgress: any}) => {
+  const scale = useTransform(scrollYProgress, [0.1, 0.3], [0.8, 0.2])
+  const rotate = useTransform(scrollYProgress, [0, 0.3], [0, 5])
+
+  return(
+    <motion.img
+    src={src} 
+    className={twMerge('sticky top-0 drop-shadow-2xl' , className)} 
+    style={{scale}}
+    />
+  )
+}
+const SecondProjectImage = ({src, className, scrollYProgress} : {src: string, className?: string, scrollYProgress: any}) => {
+  const scale = useTransform(scrollYProgress, [0.3, 0.6], [0.8, 0.2])
+  const rotate = useTransform(scrollYProgress, [0.3, 0.6], [5, -5])
+
+  return(
+    <motion.img
+    src={src} 
+    className={twMerge('sticky top-0 drop-shadow-2xl' , className)} 
+    style={{scale}}
+    />
+  )
+}
+const ThirdProjectImage = ({src, className, scrollYProgress} : {src: string, className?: string, scrollYProgress: any}) => {
+  const scale = useTransform(scrollYProgress, [0.9, 1], [0.3, 0.8])
+  const rotate = useTransform(scrollYProgress, [0.6, 1], [5, -5])
+
+  return(
+    <motion.img
+    src={src} 
+    className={twMerge('sticky top-0 drop-shadow-2xl' , className)} 
+    style={{scale}}
+    />
+  )
+}
