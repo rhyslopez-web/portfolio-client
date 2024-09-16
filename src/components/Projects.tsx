@@ -70,7 +70,7 @@ const Projects = () => {
 
 
   return (
-    <div id="viewport" className="bg-[#e5e5e5] overflow-scroll h-full rounded-3xl">
+    <motion.div initial={{y: 1000, opacity: 0}} animate={{y: 0, opacity: 1}} transition={{duration: 1}} id="viewport" className="bg-[#e5e5e5] overflow-scroll h-full rounded-3xl">
     <Heading/>
     <div className="lg:px-40 mt-20 mb-20 grid lg:grid-cols-2 md:grid-cols-2 gap-10 px-5 md:px-20">
         {projects.map((project, index) => (
@@ -130,7 +130,7 @@ const Projects = () => {
             </Link>
         ))}
     </div>
-    </div>
+    </motion.div>
   )
 }
 
