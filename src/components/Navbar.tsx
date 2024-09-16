@@ -17,18 +17,18 @@ const Navbar = () => {
   return (
     <nav className="lg:px-10 lg:py-7 fixed lg:top-5 left-0 right-0 z-50">
         <ul className="hidden lg:flex justify-end lg:gap-2">
-            <li>
-                <Link to='/project' className="border border-primary-blue text-primary-blue px-5 py-2 rounded-full backdrop-blur-lg ">
+            <li className="border border-primary-blue text-primary-blue px-5 py-2 rounded-full backdrop-blur-sm">
+                <Link to='/project' className=" ">
                     Projects
                 </Link>
             </li>
-            <li>
-                <Link to='/project' className="border border-primary-blue text-primary-blue px-5 py-2 rounded-full backdrop-blur-lg ">
+            <li className="border border-primary-blue text-primary-blue px-5 py-2 rounded-full backdrop-blur-sm">
+                <Link to='/project' className=" ">
                     About
                 </Link>
             </li>
-            <li>
-                <Link to='/project' className="border border-primary-blue text-primary-blue px-5 py-2 rounded-full backdrop-blur-lg ">
+            <li className="border border-primary-blue text-primary-blue px-5 py-2 rounded-full backdrop-blur-sm">
+                <Link to='/project' className=" ">
                     Stack
                 </Link>
             </li>

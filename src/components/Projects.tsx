@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import {motion} from 'framer-motion'
 import './Projects.css'
+import Heading from "./Heading"
 
 const Projects = () => {
   type projectsType = {
@@ -69,9 +70,11 @@ const Projects = () => {
 
 
   return (
+    <div id="viewport" className="bg-[#e5e5e5] overflow-scroll h-full rounded-3xl">
+    <Heading/>
     <div className="lg:px-40 mt-20 mb-20 grid lg:grid-cols-2 md:grid-cols-2 gap-10 px-5 md:px-20">
         {projects.map((project, index) => (
-            <Link to={`/project/${project.id}`}>
+            <Link to={`${project.id}`}>
             <div className={project.id % 2 === 0 ? 'lg:mt-20 md:mt-40 space-y-5' : 'space-y-5'} key={index}>
                 <span className="text-4xl font-primaryRegular text-primary-blue">0{project.attributes.ProjectId}</span>
                 {/* Image grid container */}
@@ -126,6 +129,7 @@ const Projects = () => {
             </div>
             </Link>
         ))}
+    </div>
     </div>
   )
 }

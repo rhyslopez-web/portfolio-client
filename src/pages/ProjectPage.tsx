@@ -8,6 +8,7 @@ import { Globe, Github } from "lucide-react"
 
 const ProjectPage = () => {
   const params = useParams()
+  console.log(params)
 
   const initialProject : ProjectInterface = {
     id: 0,
@@ -68,7 +69,7 @@ const ProjectPage = () => {
 
   useEffect(() => {
     const fetchProjects = async () => {
-        const response = await fetch(`https://portfolio-strapi-cms-494nt.ondigitalocean.app/api/projects/${params.projectId}?populate=*`)
+        const response = await fetch(`https://portfolio-strapi-cms-494nt.ondigitalocean.app/api/projects/${params.id}?populate=*`)
         const project = await response.json()
         setProject(project.data)
     }
@@ -84,13 +85,9 @@ const ProjectPage = () => {
     offset: ['start start', 'end end']
   })
 
-  
   return (
     // Blue Background
-    <div className="lg:h-screen bg-[#2500dd] p-0 lg:p-5"> 
-
-      {/* Main viewport */}
-      <div className="bg-[#e5e5e5] h-full lg:overflow-hidden lg:rounded-3xl">
+    <motion.div className="bg-[#e5e5e5] h-full lg:overflow-hidden lg:rounded-3xl">
 
         {/* Paralax image container */}
         <motion.main 
@@ -193,8 +190,8 @@ const ProjectPage = () => {
           </div>
 
         </motion.main>
-      </div>
-    </div>
+      </motion.div>
+
   )
 }
 
@@ -203,7 +200,7 @@ export default ProjectPage
 
 // Image components - each one has different animation properties based on the scroll progress
 const FirstProjectImage = ({src, className, scrollYProgress} : {src: string, className?: string, scrollYProgress: any}) => {
-  const scale = useTransform(scrollYProgress, [0.1, 0.3], [0.8, 0.2])
+  const scale = useTransform(scrollYProgress, [0, 1], [0.8, 0.7])
   return(
     <motion.img
     src={src} 
@@ -213,7 +210,7 @@ const FirstProjectImage = ({src, className, scrollYProgress} : {src: string, cla
   )
 }
 const SecondProjectImage = ({src, className, scrollYProgress} : {src: string, className?: string, scrollYProgress: any}) => {
-  const scale = useTransform(scrollYProgress, [0.3, 0.6], [0.8, 0.2])
+  const scale = useTransform(scrollYProgress, [0.3, 0.6], [0.7, 0.8])
   return(
     <motion.img
     src={src} 

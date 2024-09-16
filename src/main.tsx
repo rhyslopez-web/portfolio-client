@@ -3,22 +3,24 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import HomePage from './pages/HomePage'
+import Projects from './components/Projects'
 import ProjectPage from './pages/ProjectPage'
-import ErrorPage from './pages/ErrorPage'
+
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <HomePage/>,
-    errorElement: <ErrorPage/>
-  },
-  {
-    path: '/project',
-    element: <ProjectPage/>
-  },
-  {
-    path: '/project/:projectId',
-    element: <ProjectPage/>
+    children: [
+      {
+        path: "",
+        element: <Projects/>
+      },
+      {
+        path: ":id",
+        element: <ProjectPage/>
+      }
+    ]
   }
 ])
 
